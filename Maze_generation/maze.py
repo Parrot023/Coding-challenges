@@ -16,13 +16,14 @@ import random
 import os
 import sys
 import pygame
+import pickle
 
 sys.setrecursionlimit(10**6)
 
-WIDTH = 200
-HEIGHT = 120
-SCREEN_WIDTH = 1000
-SCREEN_HEIGHT = 600
+WIDTH = 40
+HEIGHT = 40
+SCREEN_WIDTH = WIDTH*10
+SCREEN_HEIGHT = HEIGHT*10
 BLACK = (0,0,0)
 WHITE = (255,255,255)
 
@@ -161,6 +162,10 @@ while show:
     for event in pygame.event.get():
         if event.type == pygame.QUIT: # If user clicked close
             pygame.image.save(screen, "maze.png")
+            file = open('maze.pickle', 'wb')
+
+            pickle.dump(walls, file)
+
             show = False
 
     pygame.display.flip()
